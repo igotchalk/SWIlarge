@@ -1,0 +1,24 @@
+name: SWIlarge-environment
+
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - jupyter
+  - ipython
+  - numpy
+  - scipy
+  - matplotlib
+  - mkl
+  - discretize
+  - pandas
+  - flopy
+  - cartopy
+  - mplleaflet
+  - pyproj
+  - pyshp
+  - lightgbm
+  # - gcc
+  #   - pip:
+  #       - git+https://github.com/simpeg/simpegEM1D.git@master
