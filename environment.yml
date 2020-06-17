@@ -19,6 +19,7 @@ dependencies:
   - pyproj
   - pyshp
   - lightgbm
+  - SimPEG==0.13.1
   # - gcc
-  #   - pip:
-  #       - git+https://github.com/simpeg/simpegEM1D.git@master
+    - pip:
+         - git+https://github.com/simpeg/simpegEM1D.git@master
