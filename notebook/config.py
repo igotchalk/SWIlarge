@@ -10,7 +10,7 @@ if sys.platform.lower() == 'darwin':
     exepth = bindir.joinpath('MODFLOW')
     exeext = ''
 elif sys.platform.lower() == 'linux':
-    bindir = '/home/groups/rknight'
+    bindir = Path('/home/groups/rknight')
     exepth = bindir
     exeext = ''
 elif 'win' in sys.platform.lower():

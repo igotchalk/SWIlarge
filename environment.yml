@@ -13,6 +13,7 @@ dependencies:
   - mkl
   - discretize
   - pandas
+  - xlrd
   - flopy
   - cartopy
   - mplleaflet
