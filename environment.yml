@@ -21,6 +21,7 @@ dependencies:
   - pyshp
   - lightgbm
   - SimPEG==0.13.1
+  - dask
   # - gcc
     - pip:
          - git+https://github.com/simpeg/simpegEM1D.git@master
