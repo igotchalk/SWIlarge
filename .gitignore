@@ -1,4 +1,6 @@
 ._.DS_Store
+
+#folders
 SWI_fromPC/
 data/
 docs/
@@ -7,5 +9,5 @@ aem-waveform/
 paper/
 SWI_from_PC/
 
-
+#files
 aem-waveform.zip
