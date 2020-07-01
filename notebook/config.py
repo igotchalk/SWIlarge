@@ -25,7 +25,7 @@ else:
 mfexe = exepth.joinpath('mf2005{}'.format(exeext)).absolute().as_posix()
 mpexe = exepth.joinpath('mp6{}'.format(exeext)).absolute().as_posix()
 mtexe = exepth.joinpath('mt3dms{}'.format(exeext)).absolute().as_posix()
-swexe = exepth.joinpath('swt_v4{}'.format(exeext)).absolute().as_posix()
+swexe = exepth.joinpath('swtv4{}'.format(exeext)).absolute().as_posix()
 
 mf6exe = exepth.joinpath('mf6{}'.format(exeext)).absolute().as_posix()
 mf2000exe = exepth.joinpath('mf2000{}'.format(exeext)).absolute().as_posix()
