@@ -8,8 +8,8 @@ work/
 aem-waveform/
 paper/
 SWI_from_PC/
+notebook/.ipynb_checkpoints/
+notebook/__pycache__/
 
 #files
 aem-waveform.zip
-notebook/.ipynb_checkpoints/
-notebook/__pycache__/
