@@ -11,4 +11,5 @@ SWI_from_PC/
 
 #files
 aem-waveform.zip
-*checkpoint.ipynb
+notebook/.ipynb_checkpoints/
+notebook/__pycache__/
