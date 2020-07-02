@@ -2,7 +2,13 @@
 
 #folders
 SWI_fromPC/
-data/
+data/AEM/
+data/BoundaryMeshes_preAEM/
+data/Calibrated/
+data/Calibrated_small/
+data/lith/
+data/Scenarios/
+data/WQ/
 docs/
 work/
 aem-waveform/
