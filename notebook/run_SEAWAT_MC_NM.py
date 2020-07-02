@@ -4,11 +4,16 @@ import sys
 from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
 
 ########## INPUT #############
 it = int(sys.argv[1])-1
 f_varlist = Path(sys.argv[2])
+
+# it=0
+# f_varlist = Path('../data/PriorModel/varlist.pkl')
 print(it,f_varlist)
+
 ########## INPUT #############
 
 
@@ -35,6 +40,7 @@ figdir = workdir.joinpath('figs')
 outputdir = workdir.joinpath('output')
 
 import config
+import utils
 
 
 #%% Useful functions
@@ -74,16 +80,26 @@ varlist = load_obj(f_varlist.parent,nam)
 ts = make_timestamp()
 
 
-
+##Loading
 modelname = 'NM'
-model_ws = workdir.joinpath("NM")
-m= flopy.seawat.Seawat.load('NM.nam',exe_name=config.swexe, model_ws=model_ws.as_posix())
-rows = np.load(model_ws.joinpath('rows.npy'))
-starttime = np.load(model_ws.joinpath('starttime.npy'))
+model_ws_read = workdir.joinpath("NM")
+m= flopy.seawat.Seawat.load('NM.nam',exe_name=config.swexe, model_ws=model_ws_read.as_posix())
+rows = np.load(model_ws_read.joinpath('rows.npy'))
+starttime = np.load(model_ws_read.joinpath('starttime.npy'))
 layer_mapping_ind_full = np.load(GISdir.joinpath('layer_mapping_ind_full.npy'))                                 
 layer_mapping_ind = layer_mapping_ind_full[:,rows,:]
 # m = flopy.seawat.Seawat(modelname, exe_name=config.swexe, model_ws=model_ws.as_posix(),verbose=verbose)
 
+
+##Make temp folder for writing
+model_ws = workdir.joinpath('NM_{}'.format(it))
+if not model_ws.exists():
+    model_ws.mkdir()
+m.model_ws = model_ws.as_posix()
+
+
+
+##Unpack vars
 por_sand = varlist['por_sand'][it] #done
 por_clay = varlist['por_clay'][it] #done
 aL = varlist['aL'][it] #done
@@ -156,14 +172,14 @@ runyn = True
 #Write input
 if writeyn:
     m.write_input()
-
+    
+    
 # Try to delete the output files, to prevent accidental use of older files
-
-f_delete = [os.path.join(model_ws,'MT3D.CNF'),
-            os.path.join(model_ws,'MT3D001.MAS'),
-            os.path.join(model_ws, 'MT3D001.UCN'),
-            os.path.join(model_ws, modelname + '.hds'),
-            os.path.join(model_ws, modelname + '.cbc')]
+f_delete = [os.path.join(m.model_ws,'MT3D.CNF'),
+            os.path.join(m.model_ws,'MT3D001.MAS'),
+            os.path.join(m.model_ws, 'MT3D001.UCN'),
+            os.path.join(m.model_ws, modelname + '.hds'),
+            os.path.join(m.model_ws, modelname + '.cbc')]
 
 for f in f_delete:
     try:
@@ -172,7 +188,6 @@ for f in f_delete:
         pass
 
 #%%
-import datetime
 
 if runyn:
     v = m.run_model(silent=False, report=True)
@@ -181,8 +196,6 @@ if runyn:
 else:
     print('Not running model!')
 
-
-import utils
 exportdir = outputdir.joinpath('NM')
 if not exportdir.exists():
     exportdir.mkdir(parents=True)
@@ -196,8 +209,7 @@ totim = flopy.utils.binaryfile.UcnFile(fname).get_times()[-1]
 conc_fname = 'conc{}_{}_totim{}.UCN'.format(
     it, ts, str(int(totim)))
 
+utils.copy_rename(fname,
+                 exportdir.joinpath(conc_fname))
 conc = flopy.utils.binaryfile.UcnFile(fname).get_data(kstpkper=(0,survey_kper))
 np.save(exportdir.joinpath(conc_fname[:-4] + '.npy'),conc)
-utils.copy_rename(os.path.join(m.model_ws, 'MT3D001.UCN'),
-                 exportdir.joinpath(conc_fname))
-
