@@ -82,23 +82,31 @@ ts = make_timestamp()
 
 
 
+##Make temp folder for writing
+model_ws_read = workdir.joinpath("SV")
+model_ws = workdir.joinpath('SV_{}'.format(it))
+
+try:
+    shutil.rmtree(model_ws.as_posix(),)
+except:
+    try:
+        shutil.rmtree(model_ws.as_posix())
+    except:
+        pass
+# shutil.rmtree(model_ws.as_posix())
+shutil.copytree(model_ws_read.as_posix(),model_ws.as_posix())
+
+
 ##Loading
 modelname = 'SV'
-model_ws_read = workdir.joinpath("SV")
-m= flopy.seawat.Seawat.load(modelname + '.nam',exe_name=config.swexe, model_ws=model_ws_read.as_posix())
-rows = np.load(model_ws_read.joinpath('rows.npy'))
-starttime = np.load(model_ws_read.joinpath('starttime.npy'))
+m= flopy.seawat.Seawat.load(modelname + '.nam',exe_name=config.swexe, model_ws=model_ws.as_posix())
+rows = np.load(model_ws.joinpath('rows.npy'))
+starttime = np.load(model_ws.joinpath('starttime.npy'))
 layer_mapping_ind_full = np.load(GISdir.joinpath('layer_mapping_ind_full.npy'))                                 
 layer_mapping_ind = layer_mapping_ind_full[:,rows,:]
 # m = flopy.seawat.Seawat(modelname, exe_name=config.swexe, model_ws=model_ws.as_posix(),verbose=verbose)
-thinmsk_in_aqt = np.load(model_ws_read.joinpath('thinmsk_in_aqt.npy'))
-wellmsk_in_aqt = np.load(model_ws_read.joinpath('wellmsk_in_aqt.npy'))
-
-##Make temp folder for writing
-model_ws = workdir.joinpath('SV_{}'.format(it))
-if not model_ws.exists():
-    model_ws.mkdir()
-m.model_ws = model_ws.as_posix()
+thinmsk_in_aqt = np.load(model_ws.joinpath('thinmsk_in_aqt.npy'))
+wellmsk_in_aqt = np.load(model_ws.joinpath('wellmsk_in_aqt.npy'))
 
 
 
@@ -117,8 +125,8 @@ kh_sand_400 = varlist['kh_sand_400'][it] #done
 kh_clay_400 = varlist['kh_clay_400'][it] #done
 kh_lay1     = varlist['kh_lay1'][it] #done 
 
-x_cond =  np.random.randint(150,m.ncol,size=n_conduits)
-y_cond =np.random.randint(0,m.nrow,size=n_conduits)
+x_cond =  np.random.randint(150,m.ncol-1,size=n_conduits)
+y_cond =np.random.randint(0,m.nrow-1,size=n_conduits)
 # x_cond = np.r_[x_cond,x_cond+1,x_cond,x_cond+1,x_cond-1,x_cond-1]
 # y_cond = np.r_[y_cond,y_cond,y_cond+1,y_cond+1,y_cond,y_cond+1]
 
@@ -128,6 +136,7 @@ y_cond = np.r_[y_cond,y_cond,y_cond,y_cond+1,y_cond+1,y_cond+1,y_cond+2,y_cond+2
 extra_conds = np.zeros_like(thinmsk_in_aqt)
 extra_conds[:,y_cond,x_cond] = True
 extra_conds = np.logical_and(extra_conds,layer_mapping_ind_full==4)
+
 
 # thinning_msk = thinmsk_in_aqt.copy()
 thinning_msk = np.logical_or(thinmsk_in_aqt,extra_conds)
