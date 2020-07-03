@@ -11,10 +11,11 @@ import time
 ########## INPUT #############
 it = int(sys.argv[1])-1
 f_varlist = Path(sys.argv[2])
+job_id = sys.argv[3]
 
 # it=0
 # f_varlist = Path('../data/PriorModel/varlist.pkl')
-print(it,f_varlist)
+print(it,f_varlist,job_id)
 
 ########## INPUT #############
 
@@ -85,7 +86,6 @@ ts = make_timestamp()
 
 
 print('copying files...')
-##Make temp folder for writing
 model_ws = workdir.joinpath('SV_{}'.format(it))
 
 print('loading model...')
@@ -239,8 +239,12 @@ survey_kper = np.argmin(np.abs(date_per-survey_date))
 
 fname = os.path.join(m.model_ws, 'MT3D001.UCN')
 totim = flopy.utils.binaryfile.UcnFile(fname).get_times()[-1]
-conc_fname = 'conc{}_{}_totim{}.UCN'.format(
-    it, ts, str(int(totim)))
+try:
+    conc_fname = 'conc{}_{}_totim{}_{}.UCN'.format(
+        it, ts, str(int(totim)),job_id)
+except:
+    conc_fname = 'conc{}_{}_totim{}.UCN'.format(
+        it, ts, str(int(totim)))
 
 utils.copy_rename(fname,
                  exportdir.joinpath(conc_fname))
