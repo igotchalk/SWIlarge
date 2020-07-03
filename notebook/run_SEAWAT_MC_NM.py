@@ -79,7 +79,7 @@ else:
 varlist = load_obj(f_varlist.parent,nam)
 ts = make_timestamp()
 
-
+print('loading...')
 ##Loading
 modelname = 'NM'
 model_ws_read = workdir.joinpath("NM")
@@ -98,6 +98,7 @@ if not model_ws.exists():
 m.model_ws = model_ws.as_posix()
 
 
+print('unpacking and setting vars...')
 
 ##Unpack vars
 por_sand = varlist['por_sand'][it] #done
@@ -150,6 +151,7 @@ for per in range(m.dis.nper):
         chd_per.append([val[0],val[1],val[2],DSA_head,DSA_head])
     chd_data[per] = chd_per
     
+print('creating objs...')
 
 lpf = flopy.modflow.ModflowLpf(m, hk=hk, vka=kvh, ipakcb=m.lpf.ipakcb,laytyp=0,laywet=0,
                               ss=m.lpf.ss.array,sy=m.lpf.sy.array)
@@ -171,6 +173,7 @@ writeyn= True
 runyn = True
 #Write input
 if writeyn:
+    print('writing...')
     m.write_input()
     
     
@@ -190,6 +193,7 @@ for f in f_delete:
 #%%
 
 if runyn:
+    print('running...')
     v = m.run_model(silent=False, report=True)
     for idx in range(-3, 0):
         print(v[1][idx])

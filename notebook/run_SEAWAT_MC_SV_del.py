@@ -45,7 +45,6 @@ import config
 import utils
 
 
-
 #%% Useful functions
 def load_obj(dirname,name):
     import pickle
@@ -86,7 +85,16 @@ ts = make_timestamp()
 
 print('copying files...')
 ##Make temp folder for writing
+model_ws_read = workdir.joinpath("SV")
 model_ws = workdir.joinpath('SV_{}'.format(it))
+
+try:
+    shutil.rmtree(model_ws.as_posix(),)
+except:
+    pass
+if not model_ws.exists():
+    shutil.copytree(model_ws_read.as_posix(),model_ws.as_posix())
+    time.sleep(10)
 
 print('loading model...')
 ##Loading
