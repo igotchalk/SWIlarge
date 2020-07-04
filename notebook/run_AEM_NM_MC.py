@@ -65,7 +65,7 @@ xll=595855
 yll = 4059438
 rotation = -13.5
 
-searchname = outputdir.joinpath('SV','conc{}_*totim14782_*.npy'.format(it)).as_posix()
+searchname = outputdir.joinpath('NM','conc{}_*totim14782_*.npy'.format(it)).as_posix()
 # searchname = outputdir.joinpath('NM','conc{}_*totim14782.npy'.format(it)).as_posix()
 f_conc=glob.glob(searchname)
 if len(f_conc)==0:
@@ -189,11 +189,11 @@ m_nm.modelgrid.set_coord_info(xoff=xll, yoff=yll, angrot=rotation, proj4=p.srs)#
 
 
 
-model_ws = workdir.joinpath('SV_{}'.format(it))
+model_ws = workdir.joinpath('NM_{}'.format(it))
 
 
 ##Loading
-modelname = 'SV'
+modelname = 'NM'
 m= flopy.seawat.Seawat.load(modelname + '.nam',exe_name=config.swexe, model_ws=model_ws.as_posix())
 rows = np.load(model_ws.joinpath('rows.npy'))
 starttime = np.load(model_ws.joinpath('starttime.npy'))
