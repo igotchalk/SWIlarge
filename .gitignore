@@ -17,6 +17,8 @@ SWI_from_PC/
 notebook/output/
 notebook/.ipynb_checkpoints/
 notebook/__pycache__/
+notebook/._*
+
 **/*.ipynb_checkpoints/
 #files
 aem-waveform.zip
