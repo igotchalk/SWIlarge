@@ -18,7 +18,7 @@ notebook/output/
 notebook/.ipynb_checkpoints/
 notebook/__pycache__/
 notebook/._*
-
+notebook/source_code/
 **/*.ipynb_checkpoints/
 #files
 aem-waveform.zip
