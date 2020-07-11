@@ -16,11 +16,13 @@ from shapely.geometry import Point, Polygon
 it = int(sys.argv[1])-1
 f_varlist = Path(sys.argv[2])
 job_id = sys.argv[3]
+job_id_conc = int(sys.argv[4])
 
 # it=1
 # f_varlist = Path('../data/PriorModel/varlist.pkl')
 # job_id = 'test'
-print('inputs:',it,f_varlist,job_id)
+# job_id_conc  = 3845000
+print('inputs:','it',it,'f_varlist',f_varlist,'job_id',job_id,'job_id_conc',job_id_conc)
 ########## INPUT #############
 
 
@@ -65,7 +67,7 @@ xll=595855
 yll = 4059438
 rotation = -13.5
 
-searchname = outputdir.joinpath('NM','conc{}_*totim14782_*.npy'.format(it)).as_posix()
+searchname = outputdir.joinpath('NM','conc{it}_*totim14782_{job_id_conc}.npy'.format(it=it,job_id_conc=job_id_conc)).as_posix()
 # searchname = outputdir.joinpath('NM','conc{}_*totim14782.npy'.format(it)).as_posix()
 f_conc=glob.glob(searchname)
 if len(f_conc)==0:
@@ -296,9 +298,7 @@ def global_to_local(x_glob,y_glob,rotx0=xll,roty0=yll,x0_local=xmll_rot,y0_local
 
 
 #Remove values outside of the AEM_box
-
-
-iskip = 6
+iskip = 1
 coords = [(m_empty.modelgrid.xvertices[0,0], m_empty.modelgrid.yvertices[0,0]),
           (m_empty.modelgrid.xvertices[-1,0], m_empty.modelgrid.yvertices[-1,0]),
           (m_empty.modelgrid.xvertices[-1,-1], m_empty.modelgrid.yvertices[-1,-1]),
@@ -311,29 +311,6 @@ for i,(x,y) in enumerate(zip(df.UTMX.values,df.UTMY.values)):
 msk = np.logical_and(df.CHANNEL_NO==1, msk_AEM)
 data_hm_all = df.loc[msk[msk].index+1,ch2_cols][::iskip]
 data_lm_all = df.loc[msk[msk].index,ch1_cols][::iskip]
-
-
-
-
-
-
-## Get the AEM data within boundary
-iskip = 6
-coords = [(m_empty.modelgrid.xvertices[0,0], m_empty.modelgrid.yvertices[0,0]),
-          (m_empty.modelgrid.xvertices[-1,0], m_empty.modelgrid.yvertices[-1,0]),
-          (m_empty.modelgrid.xvertices[-1,-1], m_empty.modelgrid.yvertices[-1,-1]),
-          (m_empty.modelgrid.xvertices[0,-1], m_empty.modelgrid.yvertices[0,-1])
-         ]
-model_poly = Polygon(coords)
-msk_AEM = np.zeros(len(df),dtype=np.bool)
-for i,(x,y) in enumerate(zip(df.UTMX.values,df.UTMY.values)):
-    msk_AEM[i]=Point(x,y).within(model_poly)
-msk = np.logical_and(df.CHANNEL_NO==1, msk_AEM)
-data_hm_all = df.loc[msk[msk].index+1,ch2_cols][::iskip]
-data_lm_all = df.loc[msk[msk].index,ch1_cols][::iskip]
-
-
-
 
 
 #TAKE THE LOCATION OF CHANNEL 1 FOR EACH SOUNDING
@@ -370,10 +347,6 @@ print ( 'msk',msk.shape,'\n'
 'topo',topo.shape,'\n')
 #nodenumber in grid corresponding to AEM locations
 # nodenumber_AEM = g.intersect(list(xy_global),'point',0).nodenumber
-
-
-
-
 
 print('Making the mesh...')
 
@@ -471,18 +444,6 @@ cf[np.where(hk_m <= 1e-1)]=CF_cr
 conc[conc > 100.] = np.nan
 
 
-
-# cf = np.zeros_like(layer_mapping_ind_full,dtype=np.float) #0=Clay, 1=Sand
-# cf[np.where(layer_mapping_ind_full==0)] = 1
-# cf[np.where(layer_mapping_ind_full==1)] = 1
-# cf[np.where(layer_mapping_ind_full==2)] = 0
-# cf[np.where(layer_mapping_ind_full==3)] = lith_180[np.where(layer_mapping_ind_full==3)] 
-# cf[np.where(layer_mapping_ind_full==4)] = 0
-# cf[np.where(layer_mapping_ind_full==5)] = lith_400[np.where(layer_mapping_ind_full==5)] 
-# cf[np.where(layer_mapping_ind_full>5)] = 1
-# cf[np.where(cf==0)] = CF_cr
-# cf[np.where(cf==1)] = CF_cp
-# cf = cf[:,rows,:]
 
 if RP_model==0:
     #  WS -- HS+ transform
@@ -700,7 +661,6 @@ simulation.fine_topo = np.stack((x_topo_fine,y_topo_fine,topo_grid_fine[:,2]),ax
 simulation.pair(survey)
 
 
-
 writeyn=True
 runyn=True
 
@@ -716,4 +676,6 @@ if runyn:
     dpred = simulation.forward(1./rho_grid)
     print('finished simulation!')
     np.save(aemdir.joinpath('data','{modelname}_{it}_{job_id}.npy'.format(it=it,modelname=modelname,job_id=job_id)),dpred)
+
+
 

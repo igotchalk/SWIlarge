@@ -16,11 +16,13 @@ from shapely.geometry import Point, Polygon
 it = int(sys.argv[1])-1
 f_varlist = Path(sys.argv[2])
 job_id = sys.argv[3]
+job_id_conc = sys.argv[4]
 
 # it=1
 # f_varlist = Path('../data/PriorModel/varlist.pkl')
 # job_id = 'test'
-print('inputs:',it,f_varlist,job_id)
+# job_id_conc  = 3845000
+print('inputs:','it',it,'f_varlist',f_varlist,'job_id',job_id,'job_id_conc',job_id_conc)
 ########## INPUT #############
 
 
@@ -65,7 +67,8 @@ xll=595855
 yll = 4059438
 rotation = -13.5
 
-searchname = outputdir.joinpath('SV','conc{}_*totim14782_*.npy'.format(it)).as_posix()
+searchname = outputdir.joinpath('SV','conc{it}_*totim14782_{job_id_conc}.npy'.format(it=it,job_id_conc=job_id_conc)).as_posix()
+# searchname = outputdir.joinpath('SV','conc{}_*totim14782_*.npy'.format(it)).as_posix()
 # searchname = outputdir.joinpath('NM','conc{}_*totim14782.npy'.format(it)).as_posix()
 f_conc=glob.glob(searchname)
 if len(f_conc)==0:
@@ -298,7 +301,7 @@ def global_to_local(x_glob,y_glob,rotx0=xll,roty0=yll,x0_local=xmll_rot,y0_local
 #Remove values outside of the AEM_box
 
 
-iskip = 6
+iskip = 1
 coords = [(m_empty.modelgrid.xvertices[0,0], m_empty.modelgrid.yvertices[0,0]),
           (m_empty.modelgrid.xvertices[-1,0], m_empty.modelgrid.yvertices[-1,0]),
           (m_empty.modelgrid.xvertices[-1,-1], m_empty.modelgrid.yvertices[-1,-1]),
@@ -311,27 +314,6 @@ for i,(x,y) in enumerate(zip(df.UTMX.values,df.UTMY.values)):
 msk = np.logical_and(df.CHANNEL_NO==1, msk_AEM)
 data_hm_all = df.loc[msk[msk].index+1,ch2_cols][::iskip]
 data_lm_all = df.loc[msk[msk].index,ch1_cols][::iskip]
-
-
-
-
-
-
-## Get the AEM data within boundary
-iskip = 6
-coords = [(m_empty.modelgrid.xvertices[0,0], m_empty.modelgrid.yvertices[0,0]),
-          (m_empty.modelgrid.xvertices[-1,0], m_empty.modelgrid.yvertices[-1,0]),
-          (m_empty.modelgrid.xvertices[-1,-1], m_empty.modelgrid.yvertices[-1,-1]),
-          (m_empty.modelgrid.xvertices[0,-1], m_empty.modelgrid.yvertices[0,-1])
-         ]
-model_poly = Polygon(coords)
-msk_AEM = np.zeros(len(df),dtype=np.bool)
-for i,(x,y) in enumerate(zip(df.UTMX.values,df.UTMY.values)):
-    msk_AEM[i]=Point(x,y).within(model_poly)
-msk = np.logical_and(df.CHANNEL_NO==1, msk_AEM)
-data_hm_all = df.loc[msk[msk].index+1,ch2_cols][::iskip]
-data_lm_all = df.loc[msk[msk].index,ch1_cols][::iskip]
-
 
 
 
@@ -699,8 +681,6 @@ simulation.fine_topo = np.stack((x_topo_fine,y_topo_fine,topo_grid_fine[:,2]),ax
 
 simulation.pair(survey)
 
-
-
 writeyn=True
 runyn=True
 
@@ -716,4 +696,3 @@ if runyn:
     dpred = simulation.forward(1./rho_grid)
     print('finished simulation!')
     np.save(aemdir.joinpath('data','{modelname}_{it}_{job_id}.npy'.format(it=it,modelname=modelname,job_id=job_id)),dpred)
-

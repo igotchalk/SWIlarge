@@ -1,5 +1,3 @@
-
-
 import flopy
 import os
 import sys
@@ -7,13 +5,15 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
+import shutil
+import time
 
 ########## INPUT #############
 it = int(sys.argv[1])-1
 f_varlist = Path(sys.argv[2])
 job_id = sys.argv[3]
 
-# it=1
+# it=0
 # f_varlist = Path('../data/PriorModel/varlist.pkl')
 # job_id='test'
 print(it,f_varlist,job_id)
@@ -45,6 +45,7 @@ outputdir = workdir.joinpath('output')
 
 import config
 import utils
+
 
 
 #%% Useful functions
@@ -83,32 +84,29 @@ else:
 varlist = load_obj(f_varlist.parent,nam)
 ts = make_timestamp()
 
-print('loading...')
+
+
+print('copying files...')
+model_ws = workdir.joinpath('SV_{}'.format(it))
+
+print('loading model...')
 ##Loading
-modelname = 'NM'
-model_ws = workdir.joinpath('NM_{}'.format(it))
+modelname = 'SV'
 m= flopy.seawat.Seawat.load(modelname + '.nam',exe_name=config.swexe, model_ws=model_ws.as_posix())
 rows = np.load(model_ws.joinpath('rows.npy'))
 starttime = np.load(model_ws.joinpath('starttime.npy'))
-layer_mapping_ind_full = np.load(GISdir.joinpath('layer_mapping_ind_full.npy'))                           
-kj_lay_red_full = np.load(GISdir.joinpath('KJ_boundaries','kj_lay_red_full.npy'))
-
-
+layer_mapping_ind_full = np.load(GISdir.joinpath('layer_mapping_ind_full.npy'))                                 
 layer_mapping_ind = layer_mapping_ind_full[:,rows,:]
-kj_lay_red = kj_lay_red_full[:,rows,:]
 # m = flopy.seawat.Seawat(modelname, exe_name=config.swexe, model_ws=model_ws.as_posix(),verbose=verbose)
+thinmsk_in_aqt = np.load(model_ws.joinpath('thinmsk_in_aqt.npy'))
+wellmsk_in_aqt = np.load(model_ws.joinpath('wellmsk_in_aqt.npy'))
 
 
-##Make temp folder for writing
-model_ws = workdir.joinpath('NM_{}'.format(it))
-if not model_ws.exists():
-    model_ws.mkdir()
-m.model_ws = model_ws.as_posix()
-
-
-print('unpacking and setting vars...')
-
+print('unpacking and setting new vars...')
 ##Unpack vars
+thinning =varlist['thinning'][it] #done
+n_conduits = int(varlist['n_conduits'][it])
+
 por_sand = varlist['por_sand'][it] #done
 por_clay = varlist['por_clay'][it] #done
 aL = varlist['aL'][it] #done
@@ -118,13 +116,45 @@ kh_clay_180 = varlist['kh_clay_180'][it] #done
 kh_sand_400 = varlist['kh_sand_400'][it] #done
 kh_clay_400 = varlist['kh_clay_400'][it] #done
 kh_lay1     = varlist['kh_lay1'][it] #done 
-DSA_head    = varlist['DSA_head'][it] #done 
-DSA_yn      = bool(varlist['DSA_yn'][it]) #done 
-BC_change   = 0. #varlist['BC_change'][it] #done
+
+x_cond =  np.random.randint(150,m.ncol-5,size=n_conduits)
+y_cond =np.random.randint(rows[0],rows[-1],size=n_conduits)
+
+msh=  np.array([np.meshgrid(np.arange(x-5,x+5),np.arange(y-5,y+5)) for x,y in zip(x_cond,y_cond)])
+x_cond=np.ravel(msh[:,0,:,:])
+y_cond=np.ravel(msh[:,1,:,:])
+
+extra_conds = np.zeros_like(thinmsk_in_aqt)
+extra_conds[:,y_cond,x_cond] = True
+extra_conds = np.logical_and(extra_conds,layer_mapping_ind_full==4)
+
+
+# thinning_msk = thinmsk_in_aqt.copy()
+thinning_msk = np.logical_or(thinmsk_in_aqt,extra_conds)
+thin =np.round(thinning/25,2)*25
+thck = thinmsk_in_aqt.sum(axis=0)
+thck_new = np.round((1-thin)*thck,0).astype(np.int)
+
+for lay in range(m.nlay):
+    ij = np.argwhere(thinmsk_in_aqt[lay,:,:])
+    if len(ij)>0:
+        for val in ij:
+            thck_val = thinning_msk[:,val[0],val[1]].sum()
+            if thck_new[val[0],val[1]]==0:
+#                 print('zero thickness now...')
+                thinning_msk[:,val[0],val[1]]=False
+            else:
+#                 print('thinning now...')
+                thinning_msk[lay:lay+thck_new[val[0],val[1]],val[0],val[1]]=True
+                thinning_msk[:lay,val[0],val[1]]=False
+                thinning_msk[lay+thck_new[val[0],val[1]]:,val[0],val[1]]=False        
+            
+
+            
 hk_aquitard = min(kh_clay_180,kh_clay_400)
-hk = np.zeros_like(kj_lay_red,dtype=np.float)
-lith_180 = np.load(lithdir.joinpath('snesim','mps180_{}.npy'.format(it))).astype(np.float)[:,rows,:]
-lith_400 = np.load(lithdir.joinpath('sisim','sisim400_{}.npy'.format(it))).astype(np.float)[:,rows,:]
+hk = np.zeros_like(layer_mapping_ind_full,dtype=np.float)
+lith_180 = np.load(lithdir.joinpath('snesim','mps180_{}.npy'.format(it))).astype(np.float)
+lith_400 = np.load(lithdir.joinpath('sisim','sisim400_{}.npy'.format(it))).astype(np.float)
 
 
 
@@ -134,65 +164,32 @@ lith_400[lith_400==1.] = kh_sand_400
 lith_400[lith_400==0.] = kh_clay_400
 
 
-# hk[np.where(layer_mapping_ind_full==0)] = 10000
-# hk[np.where(layer_mapping_ind_full==1)] = kh_lay1
-# hk[np.where(layer_mapping_ind_full==2)] = hk_aquitard
-# hk[np.where(layer_mapping_ind_full==3)] = lith_180[np.where(layer_mapping_ind_full==3)]
-# hk[np.where(layer_mapping_ind_full==4)] = hk_aquitard
-# hk[np.where(layer_mapping_ind_full==5)] = lith_400[np.where(layer_mapping_ind_full==5)]
-# hk[np.where(layer_mapping_ind_full>5)] = 1.
+hk[np.where(layer_mapping_ind_full==0)] = 5000
+hk[np.where(layer_mapping_ind_full==1)] = kh_lay1
+hk[np.where(layer_mapping_ind_full==2)] = hk_aquitard
+hk[np.where(layer_mapping_ind_full==3)] = lith_180[np.where(layer_mapping_ind_full==3)]
+hk[np.where(layer_mapping_ind_full==4)] = hk_aquitard
+hk[np.where(layer_mapping_ind_full==5)] = lith_400[np.where(layer_mapping_ind_full==5)]
+hk[np.where(layer_mapping_ind_full>5)] = 1.
 
-# prsity = np.zeros_like(layer_mapping_ind_full,dtype=np.float)
-# prsity[np.isin(hk,(kh_lay1,kh_sand_180,kh_sand_400))]=por_sand
-# prsity[np.where(prsity==0.)]=por_clay
+hk[np.where(wellmsk_in_aqt)]=kh_sand_180
+hk[np.where(thinmsk_in_aqt)]=kh_sand_180
 
-hk[np.where(kj_lay_red==0)] = 10000
-hk[np.where(kj_lay_red==1)] = kh_lay1
-hk[np.where(kj_lay_red==2)] = lith_180[np.where(kj_lay_red==2)] #SVA
-# hk[np.where(kj_lay_red==2)] = hk_aquitard
-hk[np.where(kj_lay_red==2.5)] = lith_180[np.where(kj_lay_red==2.5)] #int 180
-# hk[np.where(kj_lay_red==2.5)] = hk_aquitard
 
-hk[np.where(kj_lay_red==3)] = lith_180[np.where(kj_lay_red==3)]
-hk[np.where(kj_lay_red==4)] = lith_180[np.where(kj_lay_red==4)]
-# hk[np.where(kj_lay_red==4)] = hk_aquitard
-hk[np.where(kj_lay_red==5)] = lith_400[np.where(kj_lay_red==5)]
-hk[np.where(kj_lay_red>5)] = 1.
 
-prsity = np.zeros_like(kj_lay_red,dtype=np.float)
+
+
+prsity = np.zeros_like(layer_mapping_ind_full,dtype=np.float)
 prsity[np.isin(hk,(kh_lay1,kh_sand_180,kh_sand_400))]=por_sand
 prsity[np.where(prsity==0.)]=por_clay
 
 
-
-ghb_data_orig = m.ghb.stress_period_data.data
-ghb_data = {}
-for per in range(m.dis.nper):
-    ghb_per=[]
-    for val in ghb_data_orig[per]:
-        ghb_per.append([val[0],val[1],val[2],val[3]+BC_change,val[4]])
-    ghb_data[per] = ghb_per
+hk = hk[:,rows,:]
+prsity = prsity[:,rows,:]
 
 
 
-
-if DSA_yn:
-    chd_data_orig = m.chd.stress_period_data
-    chd_data = {}
-    for per in range(m.dis.nper):
-        chd_per=[]
-        for val in chd_data_orig.data[0]:
-            chd_per.append([val[0],val[1],val[2],DSA_head,DSA_head])
-        chd_data[per] = chd_per
-else: 
-    ssm_data_orig = m.ssm.stress_period_data.data
-    ssm_data = {}
-    for per in range(m.nper):
-        ssm_per=ssm_data_orig[per]
-        ssm_data[per] = list(ssm_per[list(ssm_per['itype']!=1)])        
-    ssm = flopy.mt3d.Mt3dSsm(m, stress_period_data=ssm_data,mxss=len(ssm_data[0])*mnper*1.5)
-
-print('creating objs...')
+print('creating new package objs...')
 
 lpf = flopy.modflow.ModflowLpf(m, hk=hk, vka=kvh, ipakcb=m.lpf.ipakcb,laytyp=0,laywet=0,
                               ss=m.lpf.ss.array,sy=m.lpf.sy.array)
@@ -207,18 +204,9 @@ btn = flopy.mt3d.Mt3dBtn(m,
                          sconc=sconc, nprs=1,timprs=m.btn.timprs)
 
 dsp = flopy.mt3d.Mt3dDsp(m, al=aL,dmcoef=2.0e-9)
-ghb = flopy.modflow.ModflowGhb(m, stress_period_data=ghb_data)
 
 
-if DSA_yn:
-    chd = flopy.modflow.ModflowChd(m, stress_period_data=chd_data)
-else:
-    try:
-        m.remove_package("CHD")
-    except:
-        pass
 
-        
 writeyn= True
 runyn = True
 #Write input
@@ -241,7 +229,7 @@ for f in f_delete:
         pass
 
 #%%
-
+ 
 if runyn:
     print('running...')
     v = m.run_model(silent=False, report=True)
@@ -250,18 +238,13 @@ if runyn:
 else:
     print('Not running model!')
 
-exportdir = outputdir.joinpath('NM')
+exportdir = outputdir.joinpath('SV')
 if not exportdir.exists():
     exportdir.mkdir(parents=True)
 
 date_per = starttime + np.cumsum(m.dis.perlen.array)/365
 survey_date = 2017.25
 survey_kper = np.argmin(np.abs(date_per-survey_date))
-end_date = 2040
-end_kper = np.argmin(np.abs(date_per-end_date))
-
-
-
 
 fname = os.path.join(m.model_ws, 'MT3D001.UCN')
 totim = flopy.utils.binaryfile.UcnFile(fname).get_times()[-1]
@@ -276,5 +259,10 @@ utils.copy_rename(fname,
                  exportdir.joinpath(conc_fname))
 conc = flopy.utils.binaryfile.UcnFile(fname).get_data(kstpkper=(0,survey_kper))
 np.save(exportdir.joinpath(conc_fname[:-4] + '.npy'),conc)
+
+
+end_date = 2030.9
+end_kper = np.argmin(np.abs(date_per-end_date))
+
 conc = flopy.utils.binaryfile.UcnFile(fname).get_data(kstpkper=(0,end_kper))
 np.save(exportdir.joinpath(conc_fname[:-4] + 'end.npy'),conc)
