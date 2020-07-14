@@ -120,7 +120,7 @@ kh_clay_400 = varlist['kh_clay_400'][it] #done
 kh_lay1     = varlist['kh_lay1'][it] #done 
 DSA_head    = varlist['DSA_head'][it] #done 
 DSA_yn      = bool(varlist['DSA_yn'][it]) #done 
-BC_change   = 0. #varlist['BC_change'][it] #done
+BC_change   = varlist['BC_change'][it] #done
 hk_aquitard = min(kh_clay_180,kh_clay_400)
 hk = np.zeros_like(kj_lay_red,dtype=np.float)
 lith_180 = np.load(lithdir.joinpath('snesim','mps180_{}.npy'.format(it))).astype(np.float)[:,rows,:]
@@ -174,8 +174,6 @@ for per in range(m.dis.nper):
     ghb_data[per] = ghb_per
 
 
-
-
 if DSA_yn:
     chd_data_orig = m.chd.stress_period_data
     chd_data = {}
@@ -189,8 +187,8 @@ else:
     ssm_data = {}
     for per in range(m.nper):
         ssm_per=ssm_data_orig[per]
-        ssm_data[per] = list(ssm_per[list(ssm_per['itype']!=1)])        
-    ssm = flopy.mt3d.Mt3dSsm(m, stress_period_data=ssm_data,mxss=len(ssm_data[0])*mnper*1.5)
+        ssm_data[per] = ssm_per[list(ssm_per['itype']!=1)].tolist() 
+    ssm = flopy.mt3d.Mt3dSsm(m, stress_period_data=ssm_data,mxss=len(ssm_data[0])*m.nper)
 
 print('creating objs...')
 
@@ -218,7 +216,6 @@ else:
     except:
         pass
 
-        
 writeyn= True
 runyn = True
 #Write input

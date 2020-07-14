@@ -116,6 +116,7 @@ kh_clay_180 = varlist['kh_clay_180'][it] #done
 kh_sand_400 = varlist['kh_sand_400'][it] #done
 kh_clay_400 = varlist['kh_clay_400'][it] #done
 kh_lay1     = varlist['kh_lay1'][it] #done 
+BC_change   = varlist['BC_change'][it] #done
 
 x_cond =  np.random.randint(150,m.ncol-5,size=n_conduits)
 y_cond =np.random.randint(rows[0],rows[-1],size=n_conduits)
@@ -189,10 +190,22 @@ prsity = prsity[:,rows,:]
 
 
 
+
+ghb_data_orig = m.ghb.stress_period_data.data
+ghb_data = {}
+for per in range(m.dis.nper):
+    ghb_per=[]
+    for val in ghb_data_orig[per]:
+        ghb_per.append([val[0],val[1],val[2],val[3]+BC_change,val[4]])
+    ghb_data[per] = ghb_per
+
+
 print('creating new package objs...')
 
 lpf = flopy.modflow.ModflowLpf(m, hk=hk, vka=kvh, ipakcb=m.lpf.ipakcb,laytyp=0,laywet=0,
                               ss=m.lpf.ss.array,sy=m.lpf.sy.array)
+ghb = flopy.modflow.ModflowGhb(m, stress_period_data=ghb_data)
+
 
 try:
     sconc= m.btn.sconc.array
