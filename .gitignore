@@ -11,6 +11,7 @@ data/Scenarios/
 data/WQ/
 docs/
 work/
+*source_code*
 aem-waveform/
 paper/
 SWI_from_PC/
@@ -22,3 +23,4 @@ notebook/source_code/
 **/*.ipynb_checkpoints/
 #files
 aem-waveform.zip
+data/GIS/KJ_boundaries/AEM_Modflowsize_KJboundaries.csv
