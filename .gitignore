@@ -9,6 +9,7 @@ data/Calibrated_small/
 data/lith/
 data/Scenarios/
 data/WQ/
+data/GIS/discretization/
 docs/
 work/
 *source_code*
