@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -J SV_both
-#SBATCH --array=1-500
+#SBATCH --array=302-500
 #SBATCH --output=/scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/array_%A_%a.out
 #SBATCH --error=/scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/array_%A_%a.err
 #SBATCH --ntasks=1

@@ -1,0 +1,935 @@
+    1  sdev -c 2 -t 2:00:00
+    2  conda activate SWIlarge-environment
+    3  jupyter-notebook --no-browser --port=60601
+    4  exit
+    5  exit
+    6  sdev -c 2 -t 2:00:00
+    7  sh_queue -u ianpg
+    8  sdev -c 2 -t 2:00:00
+    9  conda activate SWIlarge-environment
+   10  jupyter-notebook --no-browser --port=60601
+   11  exit
+   12  conda activate SWIlarge-environment
+   13  jupyter-notebook --no-browser --port=60601
+   14  exit
+   15  exit
+   16  sdev -c 2 -t 2:00:00
+   17  sh_queue -u ianpg
+   18  sdev -c 2 -t 2:00:00
+   19  conda activate SWIlarge-environment
+   20  jupyter-notebook --no-browser --port=60601
+   21  exit
+   22  conda activate SWIlarge-environment
+   23  jupyter-notebook --no-browser --port=60601
+   24  exit
+   25  conda install dask -n SWIlarge-environment
+   26  vim git_cloned/SWIlarge/environment.yml 
+   27  vim ~/git_cloned/simpegskytem/GlobalTDEM.py
+   28  cd git_cloned/simpegskytem/
+   29  cd .../
+   30  cd simpegsk
+   31  cd simpegskytem/
+   32  cd kang-2019-3D-aem/
+   33  git status
+   34  rm -r kang-2019-3D-aem/
+   35  git clone https://github.com/simpeg-research/kang-2019-3D-aem.git
+   36  ls -lr /scratch/users/ianpg/SWISmall/heterog1000/MC_expt_20200202_1938/
+   37  cd 
+   38  exit 
+   39  conda install dask -n SWIlarge-environment
+   40  conda activate SWIlarge-environment
+   41  cd git_cloned/SWIlarge/
+   42  git status
+   43  git add -A
+   44  git commit -m "3D code working"
+   45  git push -u
+   46  cd ~
+   47  jupyter-notebook --no-browser --port=60601
+   48  exit
+   49  conda activate SWIlarge-environment
+   50  conda deactivate
+   51  sdev -c 2 -t 2:00:00
+   52  sdev -c 2 -t 2:00:00 -m 6GB
+   53  ls -lr /scratch/users/ianpg/SWIlarge/data/AEM
+   54  ls -lr /scratch/users/ianpg/SWIlarge/data/
+   55  ls -lr /scratch/users/ianpg/SWIlarge/data/nmgwmdir_empty/
+   56  rm  /scratch/users/ianpg/SWIlarge/data/nmgwmdir_empty/m_nm_empty.nam 
+   57  sdev -c 2 -t 2:00:00
+   58  sdev -c 2 -t 2:00:00 -m 6GB
+   59  sdev -c 2 -t 2:00:00
+   60  sdev -c 2 -t 2:00:00 -m 6GB
+   61  ls -lr /scratch/users/ianpg/SWIlarge/data/AEM
+   62  ls -lr /scratch/users/ianpg/SWIlarge/data/
+   63  ls -lr /scratch/users/ianpg/SWIlarge/data/nmgwmdir_empty/
+   64  rm  /scratch/users/ianpg/SWIlarge/data/nmgwmdir_empty/m_nm_empty.nam 
+   65  sdev -c 2 -t 2:00:00
+   66  sdev -c 2 -t 2:00:00 -m 6GB
+   67  cd git_cloned/SWIlarge/
+   68  git add -A
+   69  git commit -m 'creating seawat script'
+   70  vim notebook/.ipynb_checkpoints/make_varlist-checkpoint.ipynb
+   71  git merge
+   72  git add  notebook/.ipynb_checkpoints/make_varlist-checkpoint.ipynb
+   73  git commit -m 'merge'
+   74  git commmit -a
+   75  git commit -a
+   76  git push -u
+   77  git pull
+   78  git status
+   79  cd git_cloned/SWIlarge/
+   80  git status
+   81  git push -u
+   82  cd git_cloned/SWIlarge/
+   83  git pull
+   84  git status
+   85  ls -lr /scratch/users/ianpg/SWIlarge/data
+   86  mkdir /scratch/users/ianpg/SWIlarge/data/lith
+   87  ls -lr  /scratch/users/ianpg/SWIlarge/data/lith
+   88  mkdir  /scratch/users/ianpg/SWIlarge/data/lith/sgems/sisim
+   89  mkdir  /scratch/users/ianpg/SWIlarge/data/lith/sgems/snesim
+   90  exit
+   91  mkdir  /scratch/users/ianpg/SWIlarge/data/lith/sgems/snesim
+   92  exit
+   93  cd /scratch/users/ianpg/SWIlarge/data/lith/sgems/snesim/
+   94  mv sisim400_0_499.zip ../sisim/
+   95  unzip
+   96  unzip mps180_0_99.zip 
+   97  cd ../sisim
+   98  unzip sisim400_0_499.zip 
+   99  sdev -c 2 -t 2:00:00
+  100  ls -lr /scratch/users/ianpg/SWIlarge/data/GIS/
+  101  squeue -u ianpg
+  102  exit
+  103  ls -lr /scratch/users/ianpg/SWIlarge/data/
+  104  squeue -u ianpg
+  105  exit
+  106  cond activate SWIlarge-environment
+  107  conda activate SWIlarge-environment
+  108  jpyjupyter-notebook --no-browser --port=60601
+  109  jupyter-notebook --no-browser --port=60601
+  110  exit
+  111  cd ../sisim
+  112  unzip sisim400_0_499.zip 
+  113  cd git_cloned/SWIlarge/
+  114  git status
+  115  git pull
+  116  sdev -c 2 -t 2:00:00
+  117  vim notebook/output/array_3434823_69.err
+  118  ls -ltr notebook/output/
+  119  squeue -u ianpg
+  120  ls -ltr notebook/output/
+  121  ls -ltr git_cloned/SWIlarge/notebook/output
+  122  vim  git_cloned/SWIlarge/notebook/output/array_3434823_63.err
+  123  vim  git_cloned/SWIlarge/notebook/output/array_3434823_94.err
+  124  vim  git_cloned/SWIlarge/notebook/output/array_3434823_63.out
+  125  vim  git_cloned/SWIlarge/notebook/output/array_3434823_61.err
+  126  ls -lt /scratch/users/ianpg/SWIlarge/work/output/NM
+  127  squeue -u ianpg
+  128  exit
+  129  ls -ltr git_cloned/SWIlarge/notebook/output/
+  130  vim  git_cloned/SWIlarge/notebook/run_SEAWAT_MC_NM.sbatch 
+  131  sdev -c 2 -m 6GB -t 2:00:00
+  132  exit
+  133  echo $NODE
+  134  squeue -u ianpg
+  135  exit
+  136  ls -ltr git_cloned/SWIlarge/notebook/output/
+  137  vim  git_cloned/SWIlarge/notebook/run_SEAWAT_MC_NM.sbatch 
+  138  exit
+  139  sdev -c 2 -m 6GB -t 2:00:00
+  140  cd /scratch/users/ianpg/SWIlarge/work/
+  141  cd SV
+  142  unzip SV
+  143  ls -lt
+  144  ls -lr ..
+  145  ls -lr ../NM
+  146  ls -lr ../NM/NM
+  147  mv -r ./SV/ .
+  148  mv  ./SV/* .
+  149  ls -lr ./SV
+  150  vim  git_cloned/SWIlarge/notebook/output/array_3434823_94.err
+  151  vim  git_cloned/SWIlarge/notebook/output/array_3434823_63.out
+  152  vim  git_cloned/SWIlarge/notebook/output/array_3434823_61.err
+  153  ls -lt /scratch/users/ianpg/SWIlarge/work/output/NM
+  154  exit
+  155  squeue -u ianpg
+  156  vim git_cloned/SWIlarge/notebook/output/array_3434823_88.out
+  157  sdev -c 2 -m 6GB -t 2:00:00
+  158  ls -ltr git_cloned/SWIlarge/notebook/output/
+  159  vim git_cloned/SWIlarge/notebook/output/array_3434823_88.err
+  160  vim git_cloned/SWIlarge/notebook/output/array_3434823_71.err
+  161  vim git_cloned/SWIlarge/notebook/output/array_3434823_98.out
+  162  squeue -u ianpgpwd
+  163  vim git_cloned/SWIlarge/notebook/output/array_3434823_98.err
+  164  ls -lr /scratch/users/ianpg/SWIlarge/work/
+  165  mkdir /scratch/users/ianpg/SWIlarge/work/SV
+  166  vim git_cloned/SWIlarge/notebook/output/array_3434823_88.err
+  167  vim git_cloned/SWIlarge/notebook/output/array_3434823_71.err
+  168  vim git_cloned/SWIlarge/notebook/output/array_3434823_98.out
+  169  squeue -u ianpgpwd
+  170  vim git_cloned/SWIlarge/notebook/output/array_3434823_98.err
+  171  ls -lr /scratch/users/ianpg/SWIlarge/work/
+  172  mkdir /scratch/users/ianpg/SWIlarge/work/SV
+  173  rm -r array_3504174*
+  174  rm -r array_3502954*
+  175  ls -ltra
+  176  python3
+  177  python3 run_SEAWAT_MN_SV.py 0 ../data/PriorModel.pkl
+  178  python3 run_SEAWAT_Mc_SV.py 0 ../data/PriorModel.pkl
+  179  python3 run_SEAWAT_MC_SV.py 0 ../data/PriorModel.pkl
+  180  python3 run_SEAWAT_MC_SV.py 1 /home/users/ianpg/git_cloned/SWIlarge/data/PriorModel/varlist.pkl
+  181  vim run_SEAWAT_MC_SV.sbatch
+  182  sbatch run_SEAWAT_MC_SV.sbatch
+  183  cd out
+  184  vim array_3504957_2.err
+  185  srun
+  186  srun source activate
+  187  conda deactivate
+  188  srun source activate SWIlarge-environment
+  189  srun conda  activate SWIlarge-environment
+  190  conda activate SWIlarge-envrionment
+  191  conda activate SWIlarge-environment
+  192  squeue -u ianpg
+  193  vim array_3504957_1.err
+  194  cd ~
+  195  jupyter-notebook --no-browser --port=60601
+  196  exit
+  197  conda activate SWIlarge-environment
+  198  sh_part
+  199  sh_quota
+  200  sbatch run_SEAWAT_MC_NM.sbatch 
+  201  squeue -u ianpg
+  202  exit
+  203  conda activate SWIlarge-environment
+  204  jupyter-notebook --no-browser --port=60601
+  205  exit
+  206  squeue -u ianpg
+  207  sdev
+  208  exit
+  209  cond activate SWIlarge-environment
+  210  jpyjupyter-notebook --no-browser --port=60601
+  211  jupyter-notebook --no-browser --port=60601
+  212  cd ../sisim
+  213  unzip sisim400_0_499.zip 
+  214  cd git_cloned/SWIlarge/
+  215  sdev -c 2 -t 2:00:00
+  216  vim notebook/output/array_3434823_69.err
+  217  ls -ltr notebook/output/
+  218  ls -ltr notebook/output/
+  219  ls -ltr git_cloned/SWIlarge/notebook/output
+  220  vim  git_cloned/SWIlarge/notebook/output/array_3434823_63.err
+  221  vim  git_cloned/SWIlarge/notebook/output/array_3434823_94.err
+  222  vim  git_cloned/SWIlarge/notebook/output/array_3434823_63.out
+  223  vim  git_cloned/SWIlarge/notebook/output/array_3434823_61.err
+  224  ls -lt /scratch/users/ianpg/SWIlarge/work/output/NM
+  225  ls -ltr git_cloned/SWIlarge/notebook/output/
+  226  vim  git_cloned/SWIlarge/notebook/run_SEAWAT_MC_NM.sbatch 
+  227  sdev -c 2 -m 6GB -t 2:00:00
+  228  echo $NODE
+  229  ls -ltr git_cloned/SWIlarge/notebook/output/
+  230  vim  git_cloned/SWIlarge/notebook/run_SEAWAT_MC_NM.sbatch 
+  231  sdev -c 2 -m 6GB -t 2:00:00
+  232  cd /scratch/users/ianpg/SWIlarge/work/
+  233  cd SV
+  234  unzip SV
+  235  ls -lt
+  236  ls -lr ..
+  237  ls -lr ../NM
+  238  ls -lr ../NM/NM
+  239  mv -r ./SV/ .
+  240  mv  ./SV/* .
+  241  ls -lr ./SV
+  242  vim  git_cloned/SWIlarge/notebook/output/array_3434823_94.err
+  243  vim  git_cloned/SWIlarge/notebook/output/array_3434823_63.out
+  244  vim  git_cloned/SWIlarge/notebook/output/array_3434823_61.err
+  245  ls -lt /scratch/users/ianpg/SWIlarge/work/output/NM
+  246  vim git_cloned/SWIlarge/notebook/output/array_3434823_88.out
+  247  sdev -c 2 -m 6GB -t 2:00:00
+  248  ls -ltr git_cloned/SWIlarge/notebook/output/
+  249  vim git_cloned/SWIlarge/notebook/output/array_3434823_88.err
+  250  vim git_cloned/SWIlarge/notebook/output/array_3434823_71.err
+  251  vim git_cloned/SWIlarge/notebook/output/array_3434823_98.out
+  252  squeue -u ianpgpwd
+  253  vim git_cloned/SWIlarge/notebook/output/array_3434823_98.err
+  254  mkdir /scratch/users/ianpg/SWIlarge/work/SV
+  255  ls -lr *.sbatch
+  256  vim test_timelimit.sbatch
+  257  vim run_SEAWAT_MC_NM.sbatch
+  258  conda activate SWIlarge-environment
+  259  sbatch test_timelimit.sbatch 
+  260  vim test_timelimit.sbatch 
+  261  ls -ltr output/array_3
+  262  q!
+  263  cp run_SEAWAT_MC_NM.sbatch ./run_SEAWAT_MC_SV.sbatch
+  264  vim run_SEAWAT_MC_SV.sbatch
+  265  vim  output/array_3501295_98.out
+  266  vim  output/array_3501295_98.err
+  267  scancel array_3501295_[1-100]
+  268  scancel 3501295_[1-100]
+  269  vim output/array_3501295_78
+  270  vim output/array_3501295_78.out
+  271  vim output/array_3501295_78.err
+  272  vim output/array_3501295_98.err
+  273  sh_part 
+  274  git pull
+  275  git status
+  276  vim notebook/run_SEAWAT_MC_SV.py
+  277  vim output/array_3501148_2.out
+  278  ls -ltr output/
+  279  vim output/array_3502813_73.err
+  280  vim run_SEAWAT_MC_SV.py 
+  281  rm -r array_3502813*
+  282  vim array_3501295_97.err
+  283  rm -r  array_3501295*
+  284  vim array_3434823_76.err
+  285  vim array_3501148_1.err
+  286  vim array_3501148_1.out
+  287  scancel 3501148_[1-2]
+  288  ls -lr /scratch/users/ianpg/SWIlarge/work/
+  289  vim array_3501148_2.err
+  290  vim array_3434823_39.err
+  291  scancel array_3502954_[1-100]
+  292  scancel 3502954_[1-100]
+  293  sbatch run_SEAWAT_MC_SV.sbatch 
+  294  vim ../run_SEAWAT_MC_SV.py
+  295  scancel 3504174_[1-100]
+  296  vim run_SEAWAT_MC_SV.sbatch 
+  297  sbatch run_SEAWAT_MC_SV.sbatch
+  298  vim ../run_SEAWAT_MC_SV.sbatch
+  299  sdev 
+  300  vim array_3505545_2.err
+  301  squeue -u ianpg
+  302  exit
+  303  sbatch run_SEAWAT_MC_SV.sbatch
+  304  vim ../run_SEAWAT_MC_SV.sbatch
+  305  sdev 
+  306  vim array_3505545_2.err
+  307  cd git_cloned/SWIlarge/notebook/output/
+  308  ls -ltr array_3505905*.err
+  309  vim array_3505905_91.err
+  310  vim array_3505905_91.out
+  311  ls -ltr array_3505905*.out
+  312  vim array_3505905_95.out
+  313  squeue -u ianpg
+  314  exit
+  315  ls -ltr array_3505905*.out
+  316  vim array_3505905_95.out
+  317  exit
+  318  cd git_cloned/SWIlarge/notebook/output/
+  319  squeue -u ianpg
+  320  vim  array_3505905_71.err
+  321  vim array_3507999_32.err
+  322  vim array_3507999_32.out
+  323  vim array_3505905_92.out
+  324  ls -lr /scratch/users/ianpg/SWIlarge/work/output/NM/
+  325  vim run_SEAWAT_MC_NM.py
+  326  vim run_SEAWAT_MC_SV.py
+  327  ls -lr /scratch/users/ianpg/SWIlarge/work/output/SV
+  328  cd output
+  329  vim array_3507999_90.err
+  330  ls -ltr array_3505905*.err
+  331  cd ..
+  332  vim array_3505905_9.out
+  333  vim run_SEAWAT_MC_SV.sbatch 
+  334  ls -ltr array_3507999*.err
+  335  vim array_3505905_71.err
+  336  vim array_3505905_10.err
+  337  vim array_3505905_10.out
+  338  conda activate SWIlarge-environment
+  339  conda deactivate
+  340  sdev -c 2 -t 2:00:00
+  341  exit
+  342  sbatch run_SEAWAT_MC_NM.sbatch
+  343  squeue -u ianpg
+  344  exit
+  345  conda activate SWIlarge-environment
+  346  jupyter-notebook --no-browser --port=60601
+  347  exit
+  348  vim array_3505905_10.err
+  349  vim array_3505905_10.out
+  350  conda activate SWIlarge-environment
+  351  conda deactivate
+  352  sdev -c 2 -t 2:00:00
+  353  cd /scratch/users/ianpg/SWIlarge/work/NM/
+  354  unzip NM.zip
+  355  mv NM.zip ../
+  356  cd NM
+  357  mv NM/* .
+  358  ls -lr NM/
+  359  rmdir NM/
+  360  exit
+  361  exit
+  362  cd 
+  363  cd git_cloned/SWIlarge/
+  364  jupyter notebook
+  365  git pull
+  366  cd ~
+  367  sdev -t 2:00:00 -c 2
+  368  squeue -u ianpg
+  369  cd git_cloned/SWIlarge/
+  370  git status
+  371  git pull
+  372  squeue -u ainpg
+  373  squeue -u ianpg
+  374  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/
+  375  vim run_SEAWAT_MC_NM.sbatch 
+  376  sdev -t 2:00:00 -c 2
+  377  git pull
+  378  cd ~
+  379  sdev -t 2:00:00 -c 2
+  380  cd git_cloned/SWIlarge/
+  381  git pull
+  382  squeue -u ainpg
+  383  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/
+  384  vim run_SEAWAT_MC_NM.sbatch 
+  385  sdev -t 2:00:00 -c 2
+  386  conda activate SWIlarge-environment
+  387  vim run_AEM_SV_MC.py 
+  388  cd 
+  389  python3 git_cloned/SWIlarge/notebook/run_AEM_SV_MC.py 2 /home/users/ianpg/git_cloned/SWIlarge/data/PriorModel/varlist.pkl testrun
+  390  python3 run_AEM_SV_MC.py 2 /home/users/ianpg/git_cloned/SWIlarge/data/PriorModel/varlist.pkl testrun
+  391  jupyter-notebook --no-browser --port=60601
+  392  git status
+  393  git add -A
+  394  git commit -m 
+  395  git commit -m 'ready to run AEM'
+  396  git push -u
+  397  sbatch run_AEM_SV_MC.sbatch 
+  398  vim run_AEM_SV_MC.sbatch 
+  399  ls -lr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/
+  400  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/
+  401  vim  /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/array_3550176_97.out
+  402  squeue -u ianpg
+  403  exit
+  404  sdev -t 2:00:00 -c 2 -m 6GB
+  405  exoit
+  406  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/
+  407  vim run_SEAWAT_MC_NM.sbatch 
+  408  sdev -t 2:00:00 -c 2
+  409  cd /scratch/users/ianpg/SWIlarge/work/output/NM/
+  410  ls -lr conc*_*_*_totim[1-10000].*
+  411  ls -lr conc*_*_*_totim[1-10000].npy
+  412  ls -lr conc*_*_*_totim*.npy
+  413  mkdir temp_save
+  414  ls -lr  ./*3528370*
+  415  mv  ./*3528370* ./temp_save/
+  416  ls -lr conc*
+  417  rm -r conc*.UCN
+  418  mv ./temp_save/* .
+  419  mv array* ./sbatch/
+  420  rmdir temp_save/
+  421  mv  ./*3528370* ./temp_save/
+  422  ls -lr conc*
+  423  rm -r conc*.UCN
+  424  mv ./temp_save/* .
+  425  mv array* ./sbatch/
+  426  rmdir temp_save/
+  427  conda activate SWIlarge-environmen t
+  428  conda activate SWIlarge-environment
+  429  vim run_AEM_SV_MC.sbatch 
+  430  sbatch run_AEM_SV_MC.sbatch 
+  431  cp run_AEM_SV_MC.sbatch ./run_AEM_NM_MC.sbatch
+  432  vim run_AEM_NM_MC.sbatch
+  433  squeue -u ianpg
+  434  sbatch run_AEM_NM_MC.sbatch 
+  435  vim run_SEAWAT_MC_NM.s
+  436  vim run_SEAWAT_MC_NM.sbatch 
+  437  cd 
+  438  jupyter-notebook --no-browser --port=60601
+  439  vim run_SEAWAT_MC_NM.s
+  440  vim run_SEAWAT_MC_NM.sbatch 
+  441  cd 
+  442  conda activate SWIlarge-environment
+  443  jupyter-notebook --no-browser --port=60601
+  444  cd git_cloned/SWIlarge/
+  445  git commit -m "scripts for coupled seawat aem'
+  446  git commit -m "scripts for coupled seawat aem"
+  447  git pull
+  448  git status
+  449  git add -A
+  450  git commit -m 'coupled seawat aem scripts'
+  451  git push -u
+  452  squeue -u ianpg
+  453  rmdir temp_save/
+  454  sdev -t 2:00:00 -c 2 -m 6GB
+  455  squeue -u ianpg
+  456  sdev -t 2:00:00 -c 2
+  457  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/
+  458  vim run_SEAWAT_MC_NM.sbatch 
+  459  sdev -t 2:00:00 -c 2
+  460  ls -lr conc*_*_*_totim[1-10000].*
+  461  ls -lr conc*_*_*_totim[1-10000].npy
+  462  ls -lr conc*_*_*_totim*.npy
+  463  ls -lr  ./*3528370*
+  464  mv  ./*3528370* ./temp_save/
+  465  rm -r conc*.UCN
+  466  mv ./temp_save/* .
+  467  mv array* ./sbatch/
+  468  mv  ./*3528370* ./temp_save/
+  469  rm -r conc*.UCN
+  470  mv ./temp_save/* .
+  471  mv array* ./sbatch/
+  472  conda activate SWIlarge-environmen t
+  473  sbatch run_AEM_SV_MC.sbatch 
+  474  cp run_AEM_SV_MC.sbatch ./run_AEM_NM_MC.sbatch
+  475  vim run_AEM_NM_MC.sbatch
+  476  sbatch run_AEM_NM_MC.sbatch 
+  477  vim run_SEAWAT_MC_NM.s
+  478  vim run_SEAWAT_MC_NM.sbatch 
+  479  jupyter-notebook --no-browser --port=60601
+  480  conda activate SWIlarge-envrionment
+  481  conda activate SWIlarge-environment
+  482  vim run_AEM_SV_MC.sbatch 
+  483  vim run_SEAWAT_MC_SV.sbatch
+  484  sbatch run_SEAWAT_MC_NM.sbatch
+  485  sbatch run_SEAWAT_MC_SV.sbatch
+  486  vim run_SEAWAT_MC_NM.sbatch
+  487  ls -lr /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/
+  488  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/
+  489  scancel 3571102_[101-500]
+  490  scancel 3571101_[101-500]
+  491  vim  /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/array_3571101_119.err
+  492  cd /scratch/users/ianpg/SWIlarge/data/lith/sgems/snesim
+  493  unzip mps180_100_499.zip
+  494  cd /scratch/users/ianpg/SWIlarge/work/output/
+  495  ls -lr  0_0*.pkl
+  496  rm -r  0_0*.pkl
+  497  rm -r *.pkl
+  498  ls -lr 0_0/
+  499  rmdir 0_0/
+  500  ls -lr SV
+  501  cd SV
+  502  ls -lr *3533612.*
+  503  mkdir temp_save
+  504  mv  *3533612.* ./temp_save/
+  505  ls -lr conc*
+  506  rm -r conc*
+  507  mkdir 3533612
+  508  mv temp_save/* 3533612/
+  509  ls temp_save/
+  510  ls -lr temp_save/
+  511  rmdir temp_save/
+  512  ls -lr ondemand
+  513  ls -lr forward-util
+  514  ls -lr git_cloned/SWIlarge/notebook/
+  515  ls -lr 
+  516  ls -ltr 
+  517  sbatch test.sbatch 
+  518  ls -lr /scratch/users/ianpg/SWIlarge/work/output/
+  519  ls -lr /scratch/users/ianpg/SWIlarge/work/output/NM
+  520  mkdir /scratch/users/ianpg/SWIlarge/work/output/NM/3528370
+  521  mv /scratch/users/ianpg/SWIlarge/work/output/NM/*3528370* /scratch/users/ianpg/SWIlarge/work/output/NM/3528370
+  522  cd 
+  523  cd /scratch/users/ianpg/SWIlarge/work/output/NM/
+  524  ls -lr 3528370/
+  525  cd ~/git_cloned/SWIlarge/notebook/
+  526  sbatch run_both_MC_SV.sbatch
+  527  sbatch run_both_MC_NM.sbatch
+  528  squeue -u ianpg
+  529  ls -lr /scratch/users/ianpg/SWIlarge/work/output/SV/
+  530  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/
+  531  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/
+  532  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*.err
+  533  vim  /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/array_3573022_104.out
+  534  vim /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/array_3573022_101.err
+  535  squeue -u ianpg
+  536  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/
+  537  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/*.err
+  538  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*.err
+  539  squeue -u ianpg
+  540  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*.err
+  541  conda install gc -n SWIlarge-environment
+  542  sh_part
+  543  squeue -u ianpg
+  544  conda activate SWIlarge-environment
+  545  jupyter-notebook --no-browser --port=60601
+  546  sh_part
+  547  squeue -u ianpg
+  548  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/
+  549  sdev -t 2:00:00 -c 2 -m 6GB
+  550  sh_part
+  551  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/
+  552  sdev -t 2:00:00 -c 2 -m 6GB
+  553  conda install gc scikit-fmm scikit-learn tqdm seaborn -n SWIlarge-environment
+  554  conda install scikit-fmm scikit-learn tqdm seaborn -n SWIlarge-environment
+  555  mkdir git_cloned/SWIlarge/notebook/source_code
+  556  rmdir  git_cloned/SWIlarge/notebook/source_code
+  557  cp -r git_cloned/AutoBEL-v1.0/source_code/ git_cloned/SWIlarge/notebook/source_code/
+  558  ls -lr git_cloned/SWIlarge/source_code
+  559  ls -lr git_cloned/SWIlarge/notebook/source_code/
+  560  ls -lr /scratch/users/ianpg/SWIlarge/work/
+  561  ls -lr /scratch/users/ianpg/SWIlarge/work/output/
+  562  ls -lr /scratch/users/ianpg/SWIlarge/data/AEM/
+  563  squeue -u ianpg
+  564  cd git_cloned/SWIlarge/
+  565  git add -A
+  566  git commit -m 'starting BEL'
+  567  vim .gitignore 
+  568  git add .gitignore
+  569  git status
+  570  git commit -m 'chng gitignore'
+  571  git push -u
+  572  cd git_cloned/SWIlarge/notebook/output/
+  573  ls -lr *.out
+  574  rm -r *.out
+  575  rm -r *.err
+  576  rmdir output/
+  577  sdev -t 2:00:00 -c 2 -m 6GB
+  578  squeue -u ianpg
+  579  sdev -t 2:00:00 -c 2 -m 6GB
+  580  conda activate SWIlarge-environment
+  581  jupyter-notebook --no-browser --port=60601
+  582  squeue -u ianpg
+  583  squeue -u ianpg
+  584  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/
+  585  sdev -t 2:00:00 -c 2 -m 6GB
+  586  conda actviate SWIlarge-environment
+  587  conda activate SWIlarge-environment
+  588  jupyter-notebook --no-browser --port=60601
+  589  sdev -t 2:00:00 -c 2 -m 6GB
+  590  squeue -u ianpg
+  591  conda activate SWIlarge-environment
+  592  jupyter-notebook --no-browser --port=60601
+  593  squeue -u ianpg
+  594  conda activate SWIlarge-environment
+  595  cd 
+  596  jupyter-notebook --no-browser --port=60601
+  597  cd 
+  598  conda activate SWIlarge-environment
+  599  cd
+  600  jupyter-notebook --no-browser --port=60601
+  601  conda actviate SWIlarge-environment
+  602  conda activate SWIlarge-environment
+  603  jupyter-notebook --no-browser --port=60601
+  604  cd git_cloned/SWIlarge/
+  605  git commit -m 'redesigning prior'
+  606  git status
+  607  git add -A
+  608  git commit -m 'redesign prior'
+  609  git push -u
+  610  sdev -t 2:00:00 -c 2 -m 6GB
+  611  conda actviate SWIlarge-environment
+  612  conda activate  SWIlarge-environment
+  613  jupyter-notebook --no-browser --port=60601
+  614  conda activate  SWIlarge-environment
+  615  jupyter-notebook --no-browser --port=60601
+  616  conda activate  SWIlarge-environment
+  617  jupyter-notebook --no-browser --port=60601
+  618  git commit -m 'redesigning prior'
+  619  git commit -m 'redesign prior'
+  620  squeue -u ainpg
+  621  squeue -u ianpg
+  622  scancel 3801293
+  623  sdev -t 2:00:00 -c 2 -m 6GB
+  624  cd git_cloned/SWIlarge/
+  625  git status
+  626  git add -A
+  627  git commit -m 'bel working, change to xsection NM'
+  628  git push -u
+  629  conda activate  SWIlarge-environment
+  630  jupyter-notebook --no-browser --port=60601
+  631  sbatch run_SEAWAT_MC_NM.sbatch
+  632  git push -u
+  633  cd git_cloned/SWIlarge/
+  634  git status
+  635  git pull
+  636  vim run_SEAWAT_MC_NM.sbatch 
+  637  sdev -t 2:00:00 -c 2 -m 6GB
+  638  conda activate  SWIlarge-environment
+  639  jupyter-notebook --no-browser --port=60601
+  640  squeue -u ianpg
+  641  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/
+  642  vim  /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/array_3835282_490.err
+  643  vim  /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/array_3835282_490.out
+  644  vim  /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/array_3835282_16.out
+  645  vim  /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/17:53 array_3835282_445.out
+  646  vim  /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/array_3835282_445.out
+  647  sdev -t 2:00:00 -c 2 -m 6GB
+  648  squeue -u ianpg
+  649  conda activate SWIlarge-environment
+  650  jupyter-notebook --no-browser --port=60601
+  651  squeue -u ianpg
+  652  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/
+  653  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/*.err
+  654  conda activate SWIlarge-environment
+  655  jupyter-notebook --no-browser --port=60601
+  656  conda deactivate
+  657  sdev -t 2:00:00 -c 2 -m 6GB
+  658  scance l3870435
+  659  scancel 3870435
+  660  sdev -t 2:00:00 -c 2 -m 6GB
+  661  scancel 3870435
+  662  cd git_cloned/timelapseAEM/
+  663  git status
+  664  git add -A
+  665  git commit -m 'fin'
+  666  git push -u
+  667  squeue -u ianpg
+  668  git status
+  669  git add -A
+  670  git commit -m 'fin'
+  671  git push -u
+  672  conda activate SWIlarge-environment
+  673  scancel 3882216_[1-100]
+  674  vim run_AEM_NM_MC.sbatch 
+  675  sbatch run_AEM_NM_MC.sbatch 
+  676  squeue -u ianpg
+  677  conda deactivate
+  678  sdev -t 2:00:00 -c 2 -m 6GB
+  679  conda deactivate
+  680  squeue -u ianpg
+  681  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3876548_422.out
+  682  vim /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/array_3876548_422.out
+  683  sdev -t 2:00:00 -c 2 -m 6GB
+  684  conda activate SWIlarge-environment
+  685  jupyter-notebook --no-browser --port=60601
+  686  conda activate SWIlarge-environment
+  687  jupyter-notebook --no-browser --port=60601
+  688  sdev -t 2:00:00 -c 2 -m 6GB
+  689  cd git_cloned/SWIlarge/
+  690  git status
+  691  git add -A
+  692  git commit -m 'success on bel'
+  693  git push -u
+  694  sdev -t 2:00:00 -c 2 -m 6GB
+  695  git add -A
+  696  git commit -m 'success on bel'
+  697  git push -u
+  698  conda activate SWIlarge-environment
+  699  vim run_both_MC_NM.sbatch 
+  700  sbatch  run_both_MC_NM.sbatch 
+  701  vim /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/array_3921712_2.err
+  702  vim /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/array_3921712_1.err
+  703  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/NM/sbatch/*3921712*.err
+  704  squeue -u ianpg
+  705  scancel 3919291
+  706  conda activate SWIlarge-environment
+  707  jupyter-notebook --no-browser --port=60601
+  708  squeue -u ianpg
+  709  sdev 3919343
+  710  sdev -r 3919343
+  711  srun 3919343
+  712  sdev -t 2:00:00 -c 2 -m 6GB
+  713  sdev -t 2:00:00 -c 2 -m 6GB
+  714  squeue -u ianpg
+  715  squeue -u ianpg
+  716  conda activate SWIlarge-environment
+  717  jupyter-notebook --no-browser --port=60601
+  718  scancel 3929504
+  719  squeue -u ianpg
+  720  conda activate SWIlarge-environment
+  721  jupyter-notebook --no-browser --port=60601
+  722  scancel 3929504
+  723  scancel 3989582
+  724  sdev -t 2:00:00 -c 2 -m 6GB
+  725  squeue -u ianpg
+  726  scancel 3929504
+  727  scancel 3989582
+  728  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/*3921898*
+  729  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbathc/*3921898*
+  730  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3921898*
+  731  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3921898_455*
+  732  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3921898_489*
+  733  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3921898_422*
+  734  scancel 3921898_455
+  735  scancel 3921898_489
+  736  scancel 3921898_422
+  737  sdev -t 2:00:00 -c 2 -m 6GB
+  738  squeue -u ianpg
+  739  conda activate SWIlarge-environment
+  740  jupyter-notebook --no-browser --port=60601
+  741  squeue -u ianpg
+  742  conda activate SWIlarge-environment
+  743  cd 
+  744  jupyter-notebook --no-browser --port=60601
+  745  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbathc/*3921898*
+  746  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3921898*
+  747  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3921898_455*
+  748  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3921898_489*
+  749  ls -ltr /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/*3921898_422*
+  750  scancel 3921898_455
+  751  scancel 3921898_489
+  752  scancel 3921898_422
+  753  ls -lt
+  754  sbatch run_both_MC_NM.sbatch
+  755  vimrun_SEAWAT_MC_SV_0710.py
+  756  vim  run_SEAWAT_MC_SV_0710.py
+  757  vim  run_SEAWAT_MC_SV_0715.py
+  758  vim run_both_MC_SV.sbatch
+  759  scancel 4154639_[1-500]
+  760  scancel 4154637_[1-500]
+  761  sbatch run_both_MC_SV.sbatch
+  762  squeue -u ianpg
+  763  squeue 
+  764  '
+  765  '
+  766  scancel 4154842
+  767  git status
+  768  git add -A
+  769  git commit -m "TDS residuals"
+  770  git push -u
+  771  sdev -t 2:00:00 -c 2 -m 6GB
+  772  squeue -u ianpg
+  773  conda activate SWIlarge-environment
+  774  jupyter-notebook --no-browser --port=60601
+  775  sdev -t 2:00:00 -c 2 -m 6GB
+  776  cd git_cloned/SWIlarge/
+  777  git status
+  778  git add -A
+  779  git commit -m "final post, arbitrary sampling"
+  780  git push -u
+  781  cd /scratch/users/ianpg/SWIlarge/work/output/
+  782  cd NM
+  783  ls -lr *3921712*
+  784  mkdir 3921712
+  785  cp *3921712*.npy ./3921712
+  786  ls ./ d3921712
+  787  git status
+  788  git add -A
+  789  git commit -m "TDS residuals"
+  790  git push -u
+  791  sdev -t 2:00:00 -c 2 -m 6GB
+  792  squeue -u ianpg
+  793  conda activate SWIlarge-environment
+  794  jupyter-notebook --no-browser --port=60601
+  795  sdev -t 2:00:00 -c 2 -m 6GB
+  796  cd git_cloned/SWIlarge/
+  797  git status
+  798  git add -A
+  799  git commit -m "final post, arbitrary sampling"
+  800  git push -u
+  801  cd /scratch/users/ianpg/SWIlarge/data
+  802  cd ../work/
+  803  cd BEL
+  804  ls 0lr
+  805  cd ../AEM
+  806  cd ../../AEM
+  807  cd SV
+  808  ls -lr *4158377*
+  809  mkdir 4158377
+  810  cp *4158377* ./4158377
+  811  git push -u
+  812  cd /scratch/users/ianpg/SWIlarge/data
+  813  cd ../work/
+  814  cd BEL
+  815  ls 0lr
+  816  cd ../AEM
+  817  cd ../../AEM
+  818  cd SV
+  819  ls -lr *4158377*
+  820  mkdir 4158377
+  821  cp *4158377* ./4158377
+  822  cd /scratch/users/ianpg/SWIlarge/work/
+  823  cd output/NM/
+  824  ls *4158377*
+  825  ls *3921712*
+  826  lsdir
+  827  mkdir 3921712
+  828  cd 3921712
+  829  zip 3921712_NM_SEAWAT.zip ./* 
+  830  cd ../../SV
+  831  zip 4158377_SV__SEAWAT.zip ./* 
+  832  zip 4158377_SV_SEAWAT.zip ./* 
+  833  zip 4158377_SV_SEAWAT.zip ./*.npy 
+  834  ls *zip
+  835  ls -lr *zip
+  836  rm 4158377_SV_SEAWAT.zip
+  837  ls *.zip
+  838  zip 4158377_SV_SEAWAT.zip ./*.npy
+  839  ls -ltr *4158377*
+  840  cd 4158377
+  841  ls -ltr *3921898*
+  842  mkdir 3921898
+  843  cp *3921898*.npy ./3921898
+  844  cd 3921898
+  845  sdev -t 2:00:00 -c 2 -m 6GB
+  846  sdev -t 2:00:00 -c 2 -m 6GB
+  847  ls -ltr *.sbatch
+  848  vim run_both_MC_SV.sbatch
+  849  cd /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/
+  850  ls *9375203*
+  851  ls -ltr *9375203*
+  852  vim array_9375203_109.err
+  853  vim array_9375203_367.err
+  854  vim array_9375203_245.err
+  855  squeue -u ianpg
+  856  cd /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/
+  857  ls -lt
+  858  vim array_9375203_321.out
+  859  ls -lt
+  860  vim array_9375203_321.out
+  861  conda activate SWIlarge-environment
+  862  cd
+  863  jupyter-notebook --no-browser --port=60601
+  864  ls *.sbatch
+  865  vim run_both_MC_NM.sbatch
+  866  sbatch run_both_MC_NM.sbatch
+  867  history *.sbatch
+  868  vim run_both_MC_SV.sbatch
+  869  sbatch run_both_MC_SV.sbatch
+  870  squeue -u ianog
+  871  squeue -u ianpg
+  872  cd git_cloned/SWIlarge/
+  873  git status
+  874  git pull
+  875  conda activate SWIlarge-environment
+  876  jupyter-notebook --no-browser --port=60601
+  877  sdev -t 2:00:00 -c 2 -m 6GB
+  878  scancel 9427184
+  879  squeue -u ianpg
+  880  cd /scratch/users/ianpg/SWIlarge/work/output/SV/sbatch/
+  881  ls -ltr *9431741
+  882  ls -ltr *9431741*
+  883  cd ../../NM/sbatch/
+  884  ls -ltr* 9431524*
+  885  ls -ltr  9431524*
+  886  ls -ltr  *9431524*
+  887  cd
+  888  sdev -c 6 -t 2:00:00
+  889  sdev -c 4 -t 2:00:00
+  890  sdev -c 4 -t 2:00:00
+  891  cd projects/swi/notebook/toSherlock/notebook/
+  892  ls -ltr .sbatch
+  893  ls -ltr *.sbatch
+  894  vim runAEM.sbatch 
+  895  l s-lr
+  896  ls $SCRATCH
+  897  pwd
+  898  cd $SCRATCH
+  899  LS -LR
+  900  cd projects/
+  901  cd swi/work/
+  902  ls -l
+  903  cd data
+  904  ls -lr;
+  905  ls -lrt
+  906  vim config.py
+  907  cd output/
+  908  cd ../toSherlockAEM/
+  909  ls .sbatch
+  910  pwd *sbatch
+  911  cd src
+  912  cd ../../../
+  913  tree
+  914  cd swi/notebook/toSherlock/
+  915  vim make_varlist.sbatch
+  916  cd toSherlockAEM/
+  917  vim runAEM2.sbatch 
+  918  vim runAEM2.sbatch
+  919  vim load_run_AEM.py 
+  920  ls *sbatch
+  921  cd ../
+  922  cd aem-waveform/
+  923  cd ../../
+  924  cd toSherlock/notebook/
+  925  ls -ltr
+  926  history
+  927  cd git_cloned/SWIlarge/notebook/
+  928  cd $HOME
+  929  ls 
+  930  cd git_cloned/
+  931  ls -lr
+  932  cd SWIlarge/
+  933  cd notebook/
+  934  ls
+  935  history > history_20220220.txt

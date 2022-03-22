@@ -1,0 +1,9 @@
+LOAD quadtreegrid.dfn
+
+BEGIN GRID_INTERSECTION intersect
+  GRID = quadtreegrid
+  LAYER = 4
+  SHAPEFILE = /Users/ianpg/Dropbox/temp_convenience/SWIlarge/data/GIS/chloride_contours/by_year_400/swi_400_1990
+  FEATURE_TYPE = polygon
+  OUTPUT_FILE = intersection.ifo
+END GRID_INTERSECTION intersect
