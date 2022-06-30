@@ -8,6 +8,6 @@
 #SBATCH --mem=6G
 #SBATCH --time=15:00:00
 
-python3 run_SEAWAT_MC_NM_0707.py $SLURM_ARRAY_TASK_ID /home/users/ianpg/git_cloned/SWIlarge/data/PriorModel/varlist.pkl $SLURM_ARRAY_JOB_ID
+python3 run_SEAWAT_MC_NM_220324.py $SLURM_ARRAY_TASK_ID /home/users/ianpg/git_cloned/SWIlarge/data/PriorModel/varlist.pkl $SLURM_ARRAY_JOB_ID
 
 python3 run_AEM_NM_MC.py $SLURM_ARRAY_TASK_ID /home/users/ianpg/git_cloned/SWIlarge/data/PriorModel/varlist.pkl $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_JOB_ID
